@@ -115,7 +115,7 @@ class SpanAspect
             attributes: [
                 Attributes\DbAttributes::DB_SYSTEM_NAME => Attributes\DbAttributes::DB_SYSTEM_NAME_VALUE_MARIADB,
                 Attributes\DbAttributes::DB_OPERATION_NAME => $methodName,
-                Attributes\DbAttributes::DB_COLLECTION_NAME => str_replace("Repository", "", $className),
+                Attributes\DbAttributes::DB_COLLECTION_NAME => \str_replace("Repository", "", $className),
                 Attributes\CodeAttributes::CODE_FUNCTION_NAME => $methodName,
                 "code.class.name" => $className,
             ]

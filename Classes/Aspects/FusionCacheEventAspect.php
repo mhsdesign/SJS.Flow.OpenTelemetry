@@ -21,7 +21,7 @@ class FusionCacheEventAspect
     {
         $fusionPath = 'unknown';
         $arguments = $joinPoint->getMethodArguments();
-        if (isset($arguments['evaluateContext']) && is_array($arguments['evaluateContext'])) {
+        if (isset($arguments['evaluateContext']) && \is_array($arguments['evaluateContext'])) {
             $fusionPath = $arguments['evaluateContext']['fusionPath'] ?? 'unknown';
         }
 

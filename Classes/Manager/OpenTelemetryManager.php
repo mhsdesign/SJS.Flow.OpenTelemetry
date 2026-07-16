@@ -53,7 +53,7 @@ class OpenTelemetryManager
         }
 
         $setupClass = $configurationArray["class"];
-        if (!class_exists($setupClass)) {
+        if (!\class_exists($setupClass)) {
             // TODO: improve correct class detection
             $openTelemetrySetupClass = OpenTelemetrySetup::class;
             throw new \InvalidArgumentException("Class '$setupClass' must be instance of '$openTelemetrySetupClass'");

@@ -227,14 +227,14 @@ class OpenTelemetrySetup
 
     public function endSpan(SpanInterface $spanToEnd)
     {
-        $scopeWithSpan = array_pop($this->scopesWithSpans);
+        $scopeWithSpan = \array_pop($this->scopesWithSpans);
         if ($scopeWithSpan === null) {
             throw new \Exception("Could not end span.\nEvery span in the stack already ended.");
         }
 
         ["scope" => $scope, "span" => $span] = $scopeWithSpan;
         if ($span !== $spanToEnd) {
-            array_push($scopeWithSpan, $this->scopesWithSpans);
+            \array_push($scopeWithSpan, $this->scopesWithSpans);
             throw new \Exception("Could not end span.\nSupplied span to end is not next in stack");
         }
 
@@ -254,7 +254,7 @@ class OpenTelemetrySetup
     {
         $runAway = \count($this->scopesWithSpans) + 10;
         while ($runAway-- && \count($this->scopesWithSpans) > 1) {
-            $scopeWithSpan = array_pop($this->scopesWithSpans);
+            $scopeWithSpan = \array_pop($this->scopesWithSpans);
             ["scope" => $scope, "span" => $span] = $scopeWithSpan;
 
             if ($span->isRecording()) {
