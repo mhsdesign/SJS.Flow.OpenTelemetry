@@ -99,16 +99,16 @@ class OpenTelemetrySetup
             ->setSampler(new ParentBased(new AlwaysOnSampler()))
             ->build();
 
-        $this->tracer = $tracerProvider->getTracer('demo');
+        $this->tracer = $tracerProvider->getTracer('SJS.Flow.OpenTelemetry');
 
         $this->loggerTransport = $this->createLoggerTransport($configuration);
         $logRecordExporter = $this->createLogRecordExporter($this->loggerTransport);
         $loggerProvider = $this->createLoggerProvider($logRecordExporter);
 
-        $this->logger = $loggerProvider->getLogger('demo');
+        $this->logger = $loggerProvider->getLogger('SJS.Flow.OpenTelemetry');
 
         $this->meterProvider = $this->createMeterProvider($resource);
-        $this->meter = $this->meterProvider->getMeter('demo');
+        $this->meter = $this->meterProvider->getMeter('SJS.Flow.OpenTelemetry');
 
         Sdk::builder()
             ->setTracerProvider($tracerProvider)
@@ -179,6 +179,7 @@ class OpenTelemetrySetup
 
     public function buildRootSpan()
     {
+        // TODO: re-evaluate the concept of root-spans against best-practices
         $spanBuilder = $this->tracer->spanBuilder("root")->setSpanKind(\OpenTelemetry\API\Trace\SpanKind::KIND_SERVER);
 
         $this->rootSpan = $spanBuilder->startSpan();
