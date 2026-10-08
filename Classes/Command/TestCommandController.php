@@ -29,7 +29,7 @@ class TestCommandController extends CommandController
         $message = $this->throwableStorage->logThrowable($exception, [
             "myString" => "a",
             "myStringList" => ["a", "b"],
-            // "myStringIntList" => ["a", 123],
+            "myStringIntList" => ["a", 123],
         ]);
         $this->systemLogger->error($message);
     }
